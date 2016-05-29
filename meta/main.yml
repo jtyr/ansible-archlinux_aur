@@ -1,0 +1,14 @@
+---
+
+galaxy_info:
+  author: Jiri Tyr
+  description: Role which installs Arch Linux packages from AUR.
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: GenericLinux
+      versions:
+        - all
+  categories:
+    - system
+dependencies: []

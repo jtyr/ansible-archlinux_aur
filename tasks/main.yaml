@@ -1,0 +1,29 @@
+---
+
+- name: Test distribution
+  assert:
+    that: ansible_os_family == "Archlinux"
+  tags:
+    - archlinux_aur_dist
+
+- name: Install build dependencies
+  pacman:
+    name: base-devel
+  tags:
+    - archlinux_aur_deps
+
+- name: Check if yaourt is installed
+  shell: pacman -Q {{ item }}
+  register: archlinux_aur_check_result
+  with_items: "{{ archlinux_aur_pkgs }}"
+  changed_when: false
+  failed_when: false
+  tags:
+    - archlinux_aur_check
+
+- include: build.yaml pkg={{ item.item }}
+  when: >
+    archlinux_aur_force or
+    item.rc != 0
+  with_items: "{{ archlinux_aur_check_result.results }}"
+  become: "{{ archlinux_aur_user }}"

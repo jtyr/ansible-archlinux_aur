@@ -1,0 +1,21 @@
+---
+
+- name: Download the package snapshot
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/{{ pkg }}.tar.gz
+    dest: /tmp
+  tags:
+    - archlinux_aur_download
+
+- name: Unpack the package snapshot
+  unarchive:
+    src: /tmp/{{ pkg }}.tar.gz
+    dest: /tmp/
+    copy: no
+  tags:
+    - archlinux_aur_unpack
+
+- name: Build and install the packages
+  shell: cd /tmp/{{ pkg }} && makepkg -s -i --noconfirm
+  tags:
+    - archlinux_aur_build
