@@ -14,7 +14,8 @@ Examples
   hosts: all
   vars:
     archlinux_aur_pkgs:
-       - yaourt
+      - package-query
+      - yaourt
   roles:
     - archlinux_aur
 ```
