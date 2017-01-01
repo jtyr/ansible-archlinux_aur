@@ -25,5 +25,5 @@
   when: >
     archlinux_aur_force or
     item.rc != 0
-  with_items: "{{ archlinux_aur_check_result.results }}"
+  with_items: "{{ archlinux_aur_check_result.results if archlinux_aur_check_result is defined and 'results' in archlinux_aur_check_result else [] }}"
   become: "{{ archlinux_aur_user }}"
