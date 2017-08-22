@@ -12,11 +12,12 @@
   tags:
     - archlinux_aur_deps
 
-- name: Check if yaourt is installed
+- name: Check if packages to be installed are already installed
   shell: pacman -Q {{ item }}
   register: archlinux_aur_check_result
   with_items: "{{ archlinux_aur_pkgs }}"
   changed_when: false
+  check_mode: false
   failed_when: false
   tags:
     - archlinux_aur_check
