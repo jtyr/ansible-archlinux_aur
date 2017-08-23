@@ -7,7 +7,7 @@ Ansible role which installs Arch Linux packages from AUR.
 Examples
 --------
 
-```
+```yaml
 ---
 
 - name: Install Yaourt
@@ -26,7 +26,7 @@ Role variables
 
 Variables used by the role is as follows:
 
-```
+```yaml
 # Packages to be installed
 archlinux_aur_pkgs: []
 
